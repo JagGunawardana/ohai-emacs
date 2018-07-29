@@ -103,7 +103,7 @@ Symbols matching the text at point are put first in the completion list."
       (goto-char position))))
 
 (set-default 'imenu-auto-rescan t)
-(global-set-key (kbd "C-t") 'ido-imenu)
+;(global-set-key (kbd "C-t") 'ido-imenu)
 
 ;; Bind `~` to go to homedir when in ido-find-file.
 ;; From http://whattheemacsd.com/setup-ido.el-02.html

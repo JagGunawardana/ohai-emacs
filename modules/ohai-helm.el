@@ -52,7 +52,6 @@
          ("C-x C-g" . helm-do-grep)
          ("C-x b" . helm-buffers-list)
          ("C-x c g" . helm-google-suggest)
-         ("C-t" . helm-imenu)
          ("M-y" . helm-show-kill-ring)))
 
 ;; Enrich isearch with Helm using the `C-S-s' binding.
