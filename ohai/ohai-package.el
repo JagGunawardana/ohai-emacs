@@ -40,9 +40,6 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 
-;; To get the package manager going, we invoke its initialise function.
-(package-initialize)
-
 ;; If we're online, we attempt to fetch the package directories if
 ;; we don't have a local copy already. This lets us start installing
 ;; packages right away from a clean install.
