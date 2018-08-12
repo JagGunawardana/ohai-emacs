@@ -31,7 +31,7 @@
       ido-use-virtual-buffers t)
 
 ;; Make sure ido is really everywhere.
-(use-package ido-completing-read-plus
+(use-package ido-completing-read+
   :config
   (ido-ubiquitous-mode))
 
