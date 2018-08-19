@@ -21,15 +21,9 @@
 ;;; Code:
 ;; dired+ is an enhanced version of the built-in Emacs directory editor.
 ;; Learn about how it extends Dired: http://www.emacswiki.org/emacs/DiredPlus
-(paradox-require 'quelpa)
-(quelpa
- '(quelpa-use-package
-   :fetcher git
-   :url "https://framagit.org/steckerhalter/quelpa-use-package.git"))
-(require 'quelpa-use-package)
-
+(add-to-list 'load-path "~/.emacs.d/downloads/")
+(require 'dired+)
 (use-package dired+
-  :quelpa (dired+ :fetcher github :repo "emacsmirror/dired-plus")
   :init
   (setq diredp-hide-details-initially-flag nil)
   :config
