@@ -24,6 +24,7 @@
 (add-to-list 'load-path "~/.emacs.d/downloads/")
 (require 'dired+)
 (use-package dired+
+  :load-path "~/.emacs.d/downloads/"
   :init
   (setq diredp-hide-details-initially-flag nil)
   :config
