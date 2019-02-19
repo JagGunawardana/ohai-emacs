@@ -20,6 +20,10 @@
 
 ;;; Code:
 
+(require 'package)
+(add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+
 ;; Do an Emacs version check before going any further.
 (when (or (< emacs-major-version 24)
           (and (= emacs-major-version 24) (< emacs-minor-version 4)))
