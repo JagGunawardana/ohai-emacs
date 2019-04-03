@@ -103,6 +103,13 @@
 ; ElPy
 (elpy-enable)
 
+; Cider
+
+(setq cider-cljs-lein-repl
+	"(do (require 'figwheel-sidecar.repl-api)
+         (figwheel-sidecar.repl-api/start-figwheel!)
+         (figwheel-sidecar.repl-api/cljs-repl))")
+
 ; Go stuff
 (setq gofmt-command "goimports")
 (defun my-go-mode-hook ()
