@@ -248,6 +248,11 @@
                       '(:key "C-c C-e" :description "speedbar toggle")
                       )
 
+(cheatsheet-add-group 'misc
+                      '(:key "C-u SPC" :description "Pop mark")
+                      '(:key "M-SPC" :description "Delete whitespace")
+                      )
+
 (cheatsheet-add-group 'regions
                       '(:key "C-SPC" :description "Start region")
                       '(:key "C-x SPC" :description "Start rectangular region")
