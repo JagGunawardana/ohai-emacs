@@ -186,11 +186,12 @@
 (global-set-key "\C-c\C- " 'er/expand-region)
 (global-set-key "\C-xo" 'ace-select-window)
 (global-set-key "\C-xf" 'helm-projectile)
-; used by paredit (global-set-key "\C-\M-n" 'windmove-down)
-; used by paredit (global-set-key "\C-\M-p" 'windmove-up)
 (global-set-key "\C-c\C-i" 'yas-insert-snippet)
 (global-set-key "\C-c\C-m" 'bm-toggle)
 (global-set-key "\C-c\C-n"   'bm-next)
+
+(global-set-key "\C-xwn" 'windmove-down)
+(global-set-key "\C-xwp" 'windmove-up)
 
 ; Cheatsheet
 (global-set-key "\C-h\C-s"   'cheatsheet-show)
