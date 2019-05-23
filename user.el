@@ -199,9 +199,16 @@
                       '(:key "C-h C-s" :description "show cheatsheet")
                       '(:key "C-q" :description "quit cheatsheet")
                       )
+
+(cheatsheet-add-group 'Clojure
+                      '(:key "C-c SPC" :description "align format")
+                      '(:key "M-q" :description "align around point")
+                      )
+
 (cheatsheet-add-group 'Golang
                       '(:key "C-c C-b" :description "build")
                       )
+
 (cheatsheet-add-group 'Cider
                       '(:key "C-x C-e" :description "Evaluate sexp")
                       '(:key "C-c M-n" :description "Set name space")
