@@ -189,7 +189,7 @@
 (global-set-key "\C-c\C-i" 'yas-insert-snippet)
 (global-set-key "\C-c\C-m" 'bm-toggle)
 (global-set-key "\C-c\C-n"   'bm-next)
-
+(global-set-key "\C-\M-l" 'move-to-window-line-top-bottom)
 (global-set-key "\C-xwn" 'windmove-down)
 (global-set-key "\C-xwp" 'windmove-up)
 
