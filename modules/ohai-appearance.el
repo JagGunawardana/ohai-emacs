@@ -25,6 +25,8 @@
 
 (require 'term)
 
+(require 'display-line-numbers)
+
 ;; Get rid of the training wheels, if you're ready for it.
 (when (not ohai-personal-taste/training-wheels)
   (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
@@ -118,8 +120,21 @@
   (blink-cursor-mode -1))
 
 ;; Show line numbers in buffers.
-(global-linum-mode t)
-(setq linum-format (if (not window-system) "%4d " "%4d"))
+(defcustom display-line-numbers-exempt-modes
+  '(vterm-mode eshell-mode shell-mode term-mode ansi-term-mode)
+  "Major modes on which to disable line numbers."
+  :group 'display-line-numbers
+  :type 'list
+  :version "green")
+
+(defun display-line-numbers--turn-on ()
+  "Turn on line numbers except for certain major modes.
+Exempt major modes are defined in `display-line-numbers-exempt-modes'."
+  (unless (or (minibufferp)
+	      (member major-mode display-line-numbers-exempt-modes))
+    (display-line-numbers-mode)))
+
+(global-display-line-numbers-mode)
 
 ;; Highlight the line number of the current line.
 (use-package hlinum

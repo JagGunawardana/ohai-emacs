@@ -293,8 +293,9 @@
                       )
 
 ; Line numbers
-(global-linum-mode t)
-(setq linum-format "%d ")
+(when (version<= "26.0.50" emacs-version )
+  (global-display-line-numbers-mode))
+
 
 ; ace-isearch
 
