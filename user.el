@@ -12,6 +12,8 @@
 (paradox-require 'ox-reveal)
 (paradox-require 'cheatsheet)
 (paradox-require 'paredit)
+(paradox-require 'projectile)
+
 
 (use-package elpy
 	:ensure t
@@ -23,6 +25,10 @@
 (use-package hcl-mode
     :ensure t
     :pin melpa-stable)
+
+; projectile
+(projectile-global-mode)
+(setq projectile-completion-system 'helm)
 
 ; drag stuff
 (use-package drag-stuff
