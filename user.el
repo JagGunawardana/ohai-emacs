@@ -13,7 +13,9 @@
 (paradox-require 'cheatsheet)
 (paradox-require 'paredit)
 (paradox-require 'projectile)
-
+(paradox-require 'clojure-mode)
+(paradox-require 'lsp-mode)
+(paradox-require 'lsp-ui)
 
 (use-package elpy
 	:ensure t
@@ -26,7 +28,30 @@
     :ensure t
     :pin melpa-stable)
 
-; projectile
+;; Clojure
+
+(use-package lsp-mode
+  :ensure t
+  :hook ((clojure-mode . lsp)
+         (clojurec-mode . lsp)
+         (clojurescript-mode . lsp))
+  :config
+  ;; add paths to your local installation of project mgmt tools, like lein
+  (setenv "PATH" (concat
+                  "/usr/local/bin" path-separator
+                  (getenv "PATH")))
+  (dolist (m '(clojure-mode
+               clojurec-mode
+               clojurescript-mode
+               clojurex-mode))
+    (add-to-list 'lsp-language-id-configuration `(,m . "clojure")))
+  (setq lsp-clojure-server-command '("/path/to/clojure-lsp"))) ;; Optional: In case `clojure-lsp` is not in your $PATH
+
+(use-package lsp-ui
+  :ensure t
+  :commands lsp-ui-mode)
+
+;; projectile
 (projectile-global-mode)
 (setq projectile-completion-system 'helm)
 
