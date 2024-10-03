@@ -16,6 +16,7 @@
 (paradox-require 'clojure-mode)
 (paradox-require 'lsp-mode)
 (paradox-require 'lsp-ui)
+(paradox-require 'clj-refactor)
 
 (use-package elpy
 	:ensure t
@@ -45,11 +46,25 @@
                clojurescript-mode
                clojurex-mode))
     (add-to-list 'lsp-language-id-configuration `(,m . "clojure")))
-  (setq lsp-clojure-server-command '("/usr/local/bin/clojure-lsp"))) ;; Optional: In case `clojure-lsp` is not in your $PATH
+  (setq lsp-enable-file-watchers nil)
+  (setq lsp-enable-suggest-server-download nil)
+  (setq read-process-output-max (* 1024 1024))
+  (setq lsp-clojure-server-command '("/usr/local/bin/clojure-lsp"))
+  ) ;; Optional: In case `clojure-lsp` is not in your $PATH
 
 (use-package lsp-ui
   :ensure t
   :commands lsp-ui-mode)
+
+(defun clojure-hook ()
+  ; paredit
+  (local-set-key "\M-\"" 'paredit-meta-doublequote)
+  (local-set-key "\C-[]" 'paredit-forward-slurp-sexp)
+  ;;(local-set-key "\C-[[" 'paredit-backward-slurp-sexp)
+  (local-set-key "\C-[}" 'paredit-forward-barf-sexp)
+  (local-set-key "\C-[{" 'paredit-backward-barf-sexp))
+
+(add-hook 'clojure-mode-hook 'clojure-hook)
 
 ;; projectile
 (projectile-global-mode)
@@ -71,9 +86,6 @@
 ; PlantUML
 (add-to-list
     'org-src-lang-modes '("plantuml" . plantuml))
-
-; reveal.js
-(setq org-reveal-root "file:///home/jag.gunawardana/work/presentations/reveal/reveal.js-3.6.0/js/reveal.js")
 
 ; Powerline
 (paradox-require 'powerline)
@@ -335,13 +347,3 @@
 
 ; Sort out tabs to be 4 spaces
 (setq default-tab-width 4)
-
-; paredit
-(global-set-key "\M-\"" 'paredit-meta-doublequote)
-(global-set-key "\C-[]" 'paredit-forward-slurp-sexp)
-(global-set-key "\C-[[" 'paredit-backward-slurp-sexp)
-(global-set-key "\C-[}" 'paredit-forward-barf-sexp)
-(global-set-key "\C-[{" 'paredit-backward-barf-sexp)
-
-; Should not need this - as it is the default
-;(global-set-key "\C-t", 'transpose-chars)
