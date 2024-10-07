@@ -17,6 +17,8 @@
 (paradox-require 'lsp-mode)
 (paradox-require 'lsp-ui)
 (paradox-require 'clj-refactor)
+(paradox-require 'exec-path-from-shell)
+(paradox-require 'company)
 
 (use-package elpy
 	:ensure t
@@ -47,10 +49,16 @@
                clojurex-mode))
     (add-to-list 'lsp-language-id-configuration `(,m . "clojure")))
   (setq lsp-enable-file-watchers nil)
+  (setq company-idle-delay 0)
+  (setq lsp-prefer-capf t)
   (setq lsp-enable-suggest-server-download nil)
-  (setq read-process-output-max (* 1024 1024))
-  (setq lsp-clojure-server-command '("/usr/local/bin/clojure-lsp"))
-  ) ;; Optional: In case `clojure-lsp` is not in your $PATH
+  (setq gc-cons-threshold (* 100 1024 1024)
+        read-process-output-max (* 1024 1024)
+        company-minimum-prefix-length 1
+      ; lsp-enable-indentation nil ; uncomment to use cider indentation instead of lsp
+      ; lsp-enable-completion-at-point nil ; uncomment to use cider completion instead of lsp
+      ))
+
 
 (use-package lsp-ui
   :ensure t
@@ -196,14 +204,13 @@
 ; (ac-config-default)
 
 ; "company" for go auto-completion
-(paradox-require 'company)
-(paradox-require 'company-go)
-(add-hook 'go-mode-hook (lambda ()
-                          (company-mode)
-                          (set (make-local-variable 'company-backends) '(company-go))))
 
-; Custom behaviour
-; Mac keys
+;; (paradox-require 'company-go)
+
+;; (add-hook 'go-mode-hook (lambda ()                          (company-mode)                          (set (make-local-variable 'company-backends) '(company-go))))
+
+                                        ; Custom behaviour
+                                        ; Mac keys
 (setq mac-command-modifier 'super)
 
 ; Change M-f to something sensible
