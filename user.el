@@ -354,3 +354,7 @@
 
 ; Sort out tabs to be 4 spaces
 (setq default-tab-width 4)
+
+;; Change the error colour
+(custom-set-faces!
+  '(flycheck-error :underline (:color "yellow" :style wave)))
