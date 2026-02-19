@@ -19,10 +19,7 @@
 (paradox-require 'clj-refactor)
 (paradox-require 'exec-path-from-shell)
 (paradox-require 'company)
-
-(use-package elpy
-	:ensure t
-	:pin melpa-stable)
+(paradox-require 'pyvenv)
 
 (use-package cider
 	:ensure t
@@ -37,6 +34,7 @@
   :ensure t
   :hook ((clojure-mode . lsp)
          (clojurec-mode . lsp)
+         (python-mode . lsp)
          (clojurescript-mode . lsp))
   :config
   ;; add paths to your local installation of project mgmt tools, like lein
@@ -49,16 +47,17 @@
                clojurex-mode))
     (add-to-list 'lsp-language-id-configuration `(,m . "clojure")))
   (setq lsp-enable-file-watchers nil)
-  (setq company-idle-delay 0)
+  (setq lsp-pyright-langserver-command "basedpyright")
+  (setq company-idle-delay 1)
   (setq lsp-prefer-capf t)
   (setq lsp-enable-suggest-server-download nil)
-  (setq gc-cons-threshold (* 100 1024 1024)
+  (setq gc-cons-threshold (* 1024 1024 1024)
         read-process-output-max (* 1024 1024)
         company-minimum-prefix-length 1
       ; lsp-enable-indentation nil ; uncomment to use cider indentation instead of lsp
       ; lsp-enable-completion-at-point nil ; uncomment to use cider completion instead of lsp
       ))
-
+  (run-with-idle-timer 5 t (lambda () (garbage-collect)))
 
 (use-package lsp-ui
   :ensure t
@@ -73,6 +72,7 @@
   (local-set-key "\C-[{" 'paredit-backward-barf-sexp))
 
 (add-hook 'clojure-mode-hook 'clojure-hook)
+(add-hook 'python-mode-hook 'lsp-deferred)
 
 ;; projectile
 (projectile-global-mode)
@@ -151,8 +151,20 @@
 (setq speedbar-use-images nil) ; use text for buttons
 (setq sr-speedbar-right-side nil) ; put on left side
 
-; ElPy
-(elpy-enable)
+; Python
+
+(use-package pyvenv
+  :ensure t
+  :config
+  (pyvenv-mode t)
+
+  ;; Set correct Python interpreter
+  (setq pyvenv-post-activate-hooks
+        (list (lambda ()
+                (setq python-shell-interpreter (concat pyvenv-virtual-env "bin/python3")))))
+  (setq pyvenv-post-deactivate-hooks
+        (list (lambda ()
+                (setq python-shell-interpreter "python3")))))
 
 ; Cider
 
@@ -358,3 +370,4 @@
 ;; Change the error colour
 (custom-set-faces!
   '(flycheck-error :underline (:color "yellow" :style wave)))
+
