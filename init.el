@@ -42,6 +42,10 @@ Your installed Emacs reports:
 ;; We start off by telling Emacs where we intend to keep things, and some
 ;; other basic system setup.
 
+;; Environment here
+
+(setenv "LSP_USE_PLISTS" "true")
+
 ;; Initialise the package system first of all.
 (package-initialize)
 
