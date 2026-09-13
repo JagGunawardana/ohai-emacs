@@ -60,7 +60,7 @@
   :bind (("C-S-s" . swiper-helm)))
 
 ;; Enable fuzzy matching in Helm navigation.
-(use-package "helm-flx"
+(use-package helm-flx
   :demand t
   :config
   (with-eval-after-load "helm"

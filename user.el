@@ -75,7 +75,7 @@
 (add-hook 'python-mode-hook 'lsp-deferred)
 
 ;; projectile
-(projectile-global-mode)
+(projectile-mode +1)
 (setq projectile-completion-system 'helm)
 
 ; drag stuff
@@ -98,7 +98,7 @@
 ; Powerline
 (paradox-require 'powerline)
 (paradox-require 'airline-themes)
-(load-theme 'airline-papercolor)
+(load-theme 'airline-angr)
 
 (setq powerline-utf-8-separator-left        #xe0b0
       powerline-utf-8-separator-right       #xe0b2
@@ -150,6 +150,27 @@
 (setq speedbar-show-unknown-files t) ; show all files
 (setq speedbar-use-images nil) ; use text for buttons
 (setq sr-speedbar-right-side nil) ; put on left side
+
+; Key bindings
+(global-set-key "\C-c\C-b" 'compile)
+(global-set-key "\C-c\C-e" 'sr-speedbar-toggle)
+(global-set-key "\C-c\C-s\C-c" 'avy-goto-char)
+(global-set-key "\C-c\C-s\C-t" 'avy-goto-char-timer)
+(global-set-key "\C-c\C-s\C-w" 'avy-goto-word-0)
+(global-set-key "\C-c\C-s\C-l" 'avy-goto-line)
+(global-set-key "\C-c\C-s\C-rc" 'avy-copy-region)
+(global-set-key "\C-c\C-s\C-rm" 'avy-move-region)
+(global-set-key "\C-c\C-s\C-p" 'avy-pop-mark)
+
+(global-set-key "\C-c\C- " 'er/expand-region)
+(global-set-key "\C-xo" 'ace-select-window)
+(global-set-key "\C-xf" 'helm-projectile)
+(global-set-key "\C-c\C-i" 'yas-insert-snippet)
+(global-set-key "\C-c\C-m" 'bm-toggle)
+(global-set-key "\C-c\C-n"   'bm-next)
+(global-set-key "\C-\M-l" 'move-to-window-line-top-bottom)
+(global-set-key "\C-xwn" 'windmove-down)
+(global-set-key "\C-xwp" 'windmove-up)
 
 ; Python
 
@@ -233,27 +254,6 @@
    (forward-word)
    (backward-word))
 (global-set-key "\M-f" 'next-word)
-
-; Key bindings
-(global-set-key "\C-c\C-b" 'compile)
-(global-set-key "\C-c\C-e" 'sr-speedbar-toggle)
-(global-set-key "\C-c\C-s\C-c" 'avy-goto-char)
-(global-set-key "\C-c\C-s\C-t" 'avy-goto-char-timer)
-(global-set-key "\C-c\C-s\C-w" 'avy-goto-word-0)
-(global-set-key "\C-c\C-s\C-l" 'avy-goto-line)
-(global-set-key "\C-c\C-s\C-rc" 'avy-copy-region)
-(global-set-key "\C-c\C-s\C-rm" 'avy-move-region)
-(global-set-key "\C-c\C-s\C-p" 'avy-pop-mark)
-
-(global-set-key "\C-c\C- " 'er/expand-region)
-(global-set-key "\C-xo" 'ace-select-window)
-(global-set-key "\C-xf" 'helm-projectile)
-(global-set-key "\C-c\C-i" 'yas-insert-snippet)
-(global-set-key "\C-c\C-m" 'bm-toggle)
-(global-set-key "\C-c\C-n"   'bm-next)
-(global-set-key "\C-\M-l" 'move-to-window-line-top-bottom)
-(global-set-key "\C-xwn" 'windmove-down)
-(global-set-key "\C-xwp" 'windmove-up)
 
 ; Cheatsheet
 (global-set-key "\C-h\C-s"   'cheatsheet-show)
@@ -367,7 +367,10 @@
 ; Sort out tabs to be 4 spaces
 (setq default-tab-width 4)
 
-;; Change the error colour
-(custom-set-faces!
-  '(flycheck-error :underline (:color "yellow" :style wave)))
+(set-face-attribute
+    'flycheck-error nil
+    :background "cyan"
+    :underline t
+    :inherit error)
+
 
