@@ -373,4 +373,4 @@
     :underline t
     :inherit error)
 
-
+(setq backup-by-copying t)
