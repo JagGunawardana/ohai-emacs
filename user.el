@@ -51,8 +51,8 @@
   (setq company-idle-delay 1)
   (setq lsp-prefer-capf t)
   (setq lsp-enable-suggest-server-download nil)
-  (setq gc-cons-threshold (* 1024 1024 1024)
-        read-process-output-max (* 1024 1024)
+  (setq gc-cons-threshold (* 1024 1024 1024 10)
+        read-process-output-max (* 1024 1024 10)
         company-minimum-prefix-length 1
       ; lsp-enable-indentation nil ; uncomment to use cider indentation instead of lsp
       ; lsp-enable-completion-at-point nil ; uncomment to use cider completion instead of lsp
